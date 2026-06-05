@@ -1,0 +1,15 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.agents/
+.antigravity/
+.vscode/
+firebase-blueprint.json
+firebase-applet-config.json
+metadata.json
+security_spec.md

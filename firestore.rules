@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Global Safety Net (default-deny)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Standard Reusable Helpers
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    
+    function incoming() {
+      return request.resource.data;
+    }
+    
+    function existing() {
+      return resource.data;
+    }
+    
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Bootstrapped Admin concept checking user email from runtime (godspeed200407@gmail.com)
+    function isAdmin() {
+      return isSignedIn() && 
+             request.auth.token.email_verified == true && 
+             request.auth.token.email == 'godspeed200407@gmail.com';
+    }
+
+    // Validation Blueprint for 'messages' 
+    function isValidMessage(data) {
+      return data.keys().hasAll(['name', 'email', 'subject', 'message', 'createdAt']) &&
+             data.keys().size() == 5 &&
+             data.name is string && data.name.size() > 1 && data.name.size() <= 100 &&
+             data.email is string && data.email.size() > 5 && data.email.size() <= 100 && data.email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$') &&
+             data.subject is string && (
+               data.subject == 'General Inquiry' ||
+               data.subject == 'Java Project Collaboration' ||
+               data.subject == 'Web Agency Gig / Freelance' ||
+               data.subject == 'Multimedia Render Assignment'
+             ) &&
+             data.message is string && data.message.size() > 1 && data.message.size() <= 2000 &&
+             data.createdAt == request.time;
+    }
+
+    // Match block for messages
+    match /messages/{messageId} {
+      // Create is public for unauthenticated or authenticated visitors, but strictly validated
+      allow create: if isValidId(messageId) && isValidMessage(incoming());
+      
+      // Get, List, and Delete operations are restricted exclusively to Edwin (the admin)
+      allow get, list, delete: if isAdmin();
+      
+      // Updates are strictly forbidden since messages are immutable
+      allow update: if false;
+    }
+  }
+}
