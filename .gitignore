@@ -13,3 +13,4 @@ firebase-blueprint.json
 firebase-applet-config.json
 metadata.json
 security_spec.md
+.firebase/
