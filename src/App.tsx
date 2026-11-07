@@ -123,12 +123,12 @@ export default function App() {
       {/* 4. Sticky elegant Navigation bar */}
       <nav className="sticky top-0 bg-[#fdfdfd]/95 backdrop-blur-md border-b border-black/5 z-50 shadow-none no-print" id="sticky-navbar">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex flex-col items-start gap-2 py-3 sm:h-16 sm:flex-row sm:items-center sm:justify-between sm:py-0 md:h-20">
             <span className="font-extrabold uppercase text-sm tracking-tighter text-[#121212] leading-none">
               Edwin <span className="text-blue-600">Mantsho</span>
             </span>
             
-            <div className="flex items-center gap-4 md:gap-8">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 sm:gap-4 md:gap-8">
               <a href="#about" className="text-[10px] font-bold uppercase tracking-widest text-[#121212]/80 hover:text-blue-600 transition">About</a>
               <a href="#skills" className="text-[10px] font-bold uppercase tracking-widest text-[#121212]/80 hover:text-blue-600 transition">Capabilities</a>
               <a href="#projects" className="text-[10px] font-bold uppercase tracking-widest text-[#121212]/80 hover:text-blue-600 transition">Projects</a>

@@ -49,6 +49,24 @@ export const PROJECTS: Project[] = [
     toolsUsed: ['Figma', 'HTML5', 'Tailwind CSS v4', 'Firebase Sandbox', 'Web Storage API']
   },
   {
+    id: 'zverse',
+    title: 'ZVERSE — Inside the Mainframe',
+    description: 'An interactive IBM Z education project with a 3D mainframe cabinet, a simulated transaction lab, and live workload and security exhibits.',
+    longDescription: 'ZVERSE helps visitors follow a fictional banking request from intake to audit and see how changes to identity, workload and capacity affect its outcome. A seeded engine drives the labs and telemetry. A 2D architecture map, guided tour and quiz support learning without a backend.',
+    category: 'web',
+    tags: ['React', 'Three.js', 'GSAP', 'JavaScript', 'Vitest'],
+    imageUrl: 'zverse',
+    demoUrl: 'https://edwinlebo.github.io/ZVERSE/',
+    githubUrl: 'https://github.com/EdwinLebo/ZVERSE',
+    features: [
+      'Original three-rack cabinet with ten interactive components',
+      'Five transaction scenarios and a shared, seeded simulation clock',
+      'Workload scheduling, role-based access and operational telemetry',
+      'Accessible 2D system map, guided tour and 18-question quiz'
+    ],
+    toolsUsed: ['Vite', 'React', 'Three.js', 'GSAP', 'Tailwind CSS', 'Vitest']
+  },
+  {
     id: 'whatsapp-redesign',
     title: 'WhatsApp Dev Portfolio Flow',
     description: 'An upgraded UI/UX messaging strategy and mobile chat view crafted to expose developer profiles and project catalogues natively inside WhatsApp.',
